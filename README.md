@@ -6,8 +6,7 @@
 
 A php wrapper for Strava's API (version 3).
 
-[Strava](http://strava.com "Strava")
-[Strava API Docs](http://strava.github.io/api/ "Strava API Documentation")
+[Strava](http://strava.com "Strava")  
 
 ## Requirements ##
 
@@ -65,6 +64,7 @@ makeApiCall() takes three arguments argument: Function, Method, Parameters.
 * Method (optional): get or post (delete, put, head are not yet supported). Default is 'get'.
 * Parameters (optional): An array of additional parameters [See API Docs](http://strava.github.io/api/ "Strava API Documentation")
 
+All data is returned in JSON.
 
 ## History ##
 
