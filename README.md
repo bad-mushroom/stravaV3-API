@@ -32,7 +32,7 @@ an OAuth Client ID, Secret Key, Access, Key, etc.
         'clientID' => <YOUR CLIENT ID>,
         'redirectUri' => 'http://example.com/strava', // You can use http://localhost during testing
         'cacheDir' => '<YOUR PATH TO CACHE DIRECTORY'>, // Must be writable by your web server
-        'cacheTtl => 900 // Numbder of seconds the cache file is good for (900 = 15 minutes).
+        'cacheTtl' => 900 // Numbder of seconds the cache file is good for (900 = 15 minutes).
     ));
 
 ?>
