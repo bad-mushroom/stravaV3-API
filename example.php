@@ -5,14 +5,17 @@ require '/<path>/strava.php';
 try {
 
     /**
-      * The constructor expects an array of your app's Access Token, Sectret Token, Client ID, and the Redirect URL.
+      * The constructor expects an array of your app's Access Token, Sectret Token, Client ID, the Redirect URL, and cache directory.
+      * Custom settings can also be added to the array.
       * See http://strava.github.io/api/ for more detail.
       */
     $strava = new \stravaV3\Strava(array(
-        'access_token'  => '',
-        'secret_token' => '',
-        'client_id' => 000,
-        'redirect_uri' => 'http://example.com/strava'
+        'accessToken'  => '',
+        'secretToken' => '',
+        'clientID' => 000,
+        'redirectUri' => 'http://example.com/strava',
+        'cacheDir' => '/path/to/cache/dir', // Must be writable by web server
+        'cacheTtl' => 900  // Number of seconds (900 = 15 minutes)
     ));
 
     // Authenticated - Strava will redirect the user to the Redicrt URL along with a 'code' _GET variable upon success

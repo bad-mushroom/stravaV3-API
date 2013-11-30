@@ -19,38 +19,14 @@ namespace stravaV3;
  * @author     Chris Sprague <chris@chaoscontrol.org>
  * @copyright  2013 Chris Sprague
  * @license    http://www.gnu.org/licenses/gpl.html GNU Public License
- * @version    0.1.0
+ * @version    0.2.0
  */
 abstract class BaseStrava
 {
     /**
       * Version
       */
-    const VERSION = '0.1.0';
-
-    /**
-      * Client ID
-      * @var int
-      */
-    protected $clientID = null;
-
-    /**
-      * Access Token
-      * @var string
-      */
-    protected $accessToken = null;
-
-    /**
-      * Secret Token
-      * @var string
-      */
-    protected $secretToken = null;
-
-    /**
-      * Redirect URL
-      * @var string
-      */
-    protected $redirectUri = null;
+    const VERSION = '0.2.0';
 
     /**
       * Constructor
@@ -64,12 +40,9 @@ abstract class BaseStrava
     {
         if (is_array($config) === true) {
 
-            // App Config
-            $this->setAccessToken($config['access_token']);
-            $this->setSecretToken($config['secret_token']);
-            $this->setClientID($config['client_id']);
-            $this->setRedirectUri($config['redirect_uri']);
-            
+            // Set App Config
+            $this->setConfigVariables($config);
+
             // Base OAth URL
             $this->oauth_url = 'https://www.strava.com/oauth/';
 
@@ -78,56 +51,27 @@ abstract class BaseStrava
 
             // Response Type is always 'code'
             $this->response_type = 'code';
+
         } else {
             throw new \Exception("Error: __construct() - Configuration array is missing.");
         }
     }
 
-    /**
-      * Set Client ID
-      *
-      * @param int $clientID
-      * @return void
-      */
-    public function setClientID($clientID)
-    {
-        $this->clientID = $clientID;
-        return;
-    }
 
     /**
-      * Set Redirect URL
+      * Set Config Variables
       *
-      * @param string $redirectUri
+      * Adds config items as properties
+      *
+      * @param array $config
       * @return void
       */
-    public function setRedirectUri($redirectUri)
+    public function setConfigVariables($config)
     {
-        $this->redirectUri = $redirectUri;
-        return;
-    }
+        foreach ($config as $variable => $value) {
+            $this->$variable = $value;
+        }
 
-    /**
-      * Set Access Token
-      *
-      * @param string $accessToken
-      * @return void
-      */
-    public function setAccessToken($accessToken)
-    {
-        $this->accessToken = $accessToken;
-        return;
-    }
-
-    /**
-      * Set Secret Token
-      *
-      * @param string $secretToken
-      * @return void
-      */
-    public function setSecretToken($secretToken)
-    {
-        $this->secretToken = $secretToken;
         return;
     }
 }

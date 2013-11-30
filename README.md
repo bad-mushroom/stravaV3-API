@@ -6,7 +6,7 @@
 
 A php wrapper for Strava's API (version 3).
 
-[Strava](http://strava.com "Strava")  
+[Strava](http://strava.com "Strava")
 
 ## Requirements ##
 
@@ -27,10 +27,12 @@ an OAuth Client ID, Secret Key, Access, Key, etc.
     require '/<path>/stravaV3/strava.php';
 
     $strava = new \stravaV3\Strava(array(
-        'access_token'  => '<YOUR ACCESS TOKEN>',
-        'secret_token' => '<YOUR SECRET TOKEN>',
-        'client_id' => <YOUR CLIENT ID>,
-        'redirect_uri' => 'http://example.com/strava' // You can use http://localhost during testing
+        'accessToken'  => '<YOUR ACCESS TOKEN>',
+        'secretToken' => '<YOUR SECRET TOKEN>',
+        'clientID' => <YOUR CLIENT ID>,
+        'redirectUri' => 'http://example.com/strava', // You can use http://localhost during testing
+        'cacheDir' => '<YOUR PATH TO CACHE DIRECTORY'>, // Must be writable by your web server
+        'cacheTtl => 900 // Numbder of seconds the cache file is good for (900 = 15 minutes).
     ));
 
 ?>
@@ -64,9 +66,15 @@ makeApiCall() takes three arguments argument: Function, Method, Parameters.
 * Method (optional): get or post (delete, put, head are not yet supported). Default is 'get'.
 * Parameters (optional): An array of additional parameters [See API Docs](http://strava.github.io/api/ "Strava API Documentation")
 
-All data is returned in JSON.
+All data is returned in JSON format. Since we're limited to the number of calls we can make in a 15 minute period,
+makeApiCall() will automatically look for a cached version of the data before contacting Strava. If a valid cache
+doesn't exist the method will save the response from Strava as a serialized, JSON decoded string
+to be used in subsequent requests.
 
 ## History ##
+
+**StravaV3 0.2.0 - 2013-12-1**
+- Added response caching
 
 **StravaV3 0.1.0 - 2013-11-28**
 - Initial release
