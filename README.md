@@ -63,8 +63,8 @@ The only method (at this time) that you'll call is the makeApiCall() method.
 makeApiCall() takes three arguments argument: Function, Method, Parameters.
 
 * Function (required): the type of information to return. [See API Docs](http://strava.github.io/api/ "Strava API Documentation")
-* Method (optional): get or post (delete, put, head are not yet supported). Default is 'get'.
 * Parameters (optional): An array of additional parameters [See API Docs](http://strava.github.io/api/ "Strava API Documentation")
+* Method (optional): get or post (delete, put, head are not yet supported). Default is 'get'.
 
 All data is returned in JSON format. Since we're limited to the number of calls we can make in a 15 minute period,
 makeApiCall() will automatically look for a cached version of the data before contacting Strava. If a valid cache
@@ -73,8 +73,10 @@ to be used in subsequent requests.
 
 ## History ##
 
-**StravaV3 0.2.0 - 2013-12-1**
+**StravaV3 0.2.0 - 2013-11-30**
 - Added response caching
+- Added check for 401 header
+- Fixed bug that caused $api_url to be malformed when passing a parameters array
 
 **StravaV3 0.1.0 - 2013-11-28**
 - Initial release

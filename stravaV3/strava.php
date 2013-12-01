@@ -47,7 +47,7 @@ class Strava extends \stravaV3\BaseStrava
       * @param string $state Returned to your application, useful if the authentication is done from various points in an app.
       * @param string $prompt Can be 'force' or 'auto'. Used to show the authorization prompt even if the user has already authorized the current application.
       */
-    public function requestAccess($scope = null, $state = 'app', $prompt = null)
+    public function requestAccess($scope = null, $state = null, $prompt = null)
     {
         $url = $this->oauth_url . 'authorize?client_id=' . $this->clientID . '&response_type=' . $this->response_type .
             '&redirect_uri=' . urlencode($this->redirectUri);
@@ -119,23 +119,25 @@ class Strava extends \stravaV3\BaseStrava
       * @param array $parameters
       * @return string
       */
-    public function makeApiCall($function, $method = 'get', $parameters = null)
+    public function makeApiCall($function, $parameters = null, $method = 'get')
     {
         $this->getOAuthToken();
 
         if (isset($parameters) && is_array($parameters)) {
-            $parameter_string = '&' . http_build_query($parameters);
+            $parameter_string = http_build_query($parameters);
         } else {
             $parameter_string = null;
         }
 
-        $api_url = $this->api_url . '/' . $function . '?access_token=' . $this->accessToken;
-        $api_url .= ($method === 'get') ? $parameter_string : null;
+        $api_url = $this->api_url . '/' . $function . '?';
+        $api_url .= ($method === 'get' && $parameter_string !== null) ? $parameter_string .'&' : null;
+        $api_url .= 'access_token=' . $this->accessToken;
+
 
         // check cache
         $json_cache = $this->getCacheData($api_url);
 
-        if ($json_cache !== false) {
+        if (($json_cache !== false) && ($method === 'get')) {
             return $json_cache;
         }
 
@@ -173,7 +175,7 @@ class Strava extends \stravaV3\BaseStrava
         $cache_file = $this->getCacheName($api_url);
         $cache_expires = time() - $this->cacheTtl;
 
-        if (file_exists($cache_file) && filemtime($cache_file) > $cache_expires) {
+        if (file_exists($cache_file) && filemtime($cache_file) >= $cache_expires) {
             $cache_data = file_get_contents($cache_file);
 
             return unserialize($cache_data);
@@ -201,7 +203,7 @@ class Strava extends \stravaV3\BaseStrava
                 unlink($cache_file);
             }
             $cache_data = json_decode($json_response);
-            file_put_contents($cach_file, serialize($cache_data));
+            file_put_contents($cache_file, serialize($cache_data));
 
         } else {
             throw new \Exception('Error: writeCacheData() - Cache driectory is not writable.');
