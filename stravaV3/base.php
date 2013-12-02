@@ -57,7 +57,6 @@ abstract class BaseStrava
         }
     }
 
-
     /**
       * Set Config Variables
       *

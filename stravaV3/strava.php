@@ -133,7 +133,6 @@ class Strava extends \stravaV3\BaseStrava
         $api_url .= ($method === 'get' && $parameter_string !== null) ? $parameter_string .'&' : null;
         $api_url .= 'access_token=' . $this->accessToken;
 
-
         // check cache
         $json_cache = $this->getCacheData($api_url);
 
@@ -202,6 +201,7 @@ class Strava extends \stravaV3\BaseStrava
             if (file_exists($cache_file)) {
                 unlink($cache_file);
             }
+
             $cache_data = json_decode($json_response);
             file_put_contents($cache_file, serialize($cache_data));
 
