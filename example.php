@@ -1,6 +1,6 @@
 <?php
 
-require '/<path>/strava.php';
+require '/<path>/Strava.php';
 
 try {
 

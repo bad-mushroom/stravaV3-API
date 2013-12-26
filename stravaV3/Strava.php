@@ -2,7 +2,7 @@
 
 namespace stravaV3;
 
-require_once 'base.php';
+require_once 'Base.php';
 
 /**
  * Strava API V3 php Wrapper
@@ -49,7 +49,7 @@ class Strava extends \stravaV3\Base
       */
     public function requestAccess($scope = null, $state = null, $prompt = null)
     {
-        $url = $this->oathUrl . 'authorize?client_id=' . $this->clientID . '&response_type=' . $this->response_type .
+        $url = $this->oathUrl . 'authorize?client_id=' . $this->clientID . '&response_type=' . $this->responseType .
             '&redirect_uri=' . urlencode($this->redirectUri);
 
         if ($scope != null) {

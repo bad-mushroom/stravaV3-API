@@ -50,7 +50,7 @@ abstract class Base
             $this->apiUrl = 'https://www.strava.com/api/v3';
 
             // Response Type is always 'code'
-            $this->response_type = 'code';
+            $this->responseType = 'code';
 
         } else {
             throw new \Exception("Error: __construct() - Configuration array is missing.");
