@@ -21,7 +21,7 @@ namespace stravaV3;
  * @license    http://www.gnu.org/licenses/gpl.html GNU Public License
  * @version    0.2.0
  */
-abstract class BaseStrava
+abstract class Base
 {
     /**
       * Version
@@ -44,10 +44,10 @@ abstract class BaseStrava
             $this->setConfigVariables($config);
 
             // Base OAth URL
-            $this->oauth_url = 'https://www.strava.com/oauth/';
+            $this->oauthUrl = 'https://www.strava.com/oauth/';
 
             // Base API URL
-            $this->api_url = 'https://www.strava.com/api/v3';
+            $this->apiUrl = 'https://www.strava.com/api/v3';
 
             // Response Type is always 'code'
             $this->response_type = 'code';

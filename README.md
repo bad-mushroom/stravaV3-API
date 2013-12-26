@@ -73,6 +73,9 @@ to be used in subsequent requests.
 
 ## History ##
 
+**StravaV3 0.2.1 - 2013-12-25**
+- PSR-0
+
 **StravaV3 0.2.0 - 2013-11-30**
 - Added response caching
 - Added check for 401 header

@@ -23,7 +23,7 @@ require_once 'base.php';
  * @license    http://www.gnu.org/licenses/gpl.html GNU Public License
  * @version    0.2.0
  */
-class Strava extends \stravaV3\BaseStrava
+class Strava extends \stravaV3\Base
 {
     /**
       * Constructor
@@ -49,7 +49,7 @@ class Strava extends \stravaV3\BaseStrava
       */
     public function requestAccess($scope = null, $state = null, $prompt = null)
     {
-        $url = $this->oauth_url . 'authorize?client_id=' . $this->clientID . '&response_type=' . $this->response_type .
+        $url = $this->oathUrl . 'authorize?client_id=' . $this->clientID . '&response_type=' . $this->response_type .
             '&redirect_uri=' . urlencode($this->redirectUri);
 
         if ($scope != null) {
@@ -79,7 +79,7 @@ class Strava extends \stravaV3\BaseStrava
       */
     public function getOAuthToken()
     {
-        $url = $this->oauth_url . '/token';
+        $url = $this->oathUrl . '/token';
 
         // Post fields
         $fields = array(
@@ -129,7 +129,7 @@ class Strava extends \stravaV3\BaseStrava
             $parameter_string = null;
         }
 
-        $api_url = $this->api_url . '/' . $function . '?';
+        $api_url = $this->apiUrl . '/' . $function . '?';
         $api_url .= ($method === 'get' && $parameter_string !== null) ? $parameter_string .'&' : null;
         $api_url .= 'access_token=' . $this->accessToken;
 
@@ -166,12 +166,12 @@ class Strava extends \stravaV3\BaseStrava
       *
       * Returns the JSON response from cache if it exists and hasn't expired.
       *
-      * @param string $api_url
+      * @param string $apiUrl
       * @return boolean|string
       */
-    private function getCacheData($api_url)
+    private function getCacheData($apiUrl)
     {
-        $cache_file = $this->getCacheName($api_url);
+        $cache_file = $this->getCacheName($apiUrl);
         $cache_expires = time() - $this->cacheTtl;
 
         if (file_exists($cache_file) && filemtime($cache_file) >= $cache_expires) {
@@ -188,14 +188,14 @@ class Strava extends \stravaV3\BaseStrava
       *
       * Writes the JSON response to a cache file.
       *
-      * @param string $api_url
+      * @param string $apiUrl
       * @param string $json_response
       * @throws \Exception
       */
-    private function writeCacheData($api_url, $json_response)
+    private function writeCacheData($apiUrl, $json_response)
     {
         if (is_writable($this->cacheDir)) {
-            $cache_file = $this->getCacheName($api_url);
+            $cache_file = $this->getCacheName($apiUrl);
 
             // Delete expired cahce file it it exists
             if (file_exists($cache_file)) {
@@ -217,12 +217,12 @@ class Strava extends \stravaV3\BaseStrava
       *
       * Returns the filename of the would be cache name.
       *
-      * @param string $api_url
+      * @param string $apiUrl
       * @return string
       */
-    private function getCacheName($api_url)
+    private function getCacheName($apiUrl)
     {
-        $cache_name = md5($api_url) . '.cache';
+        $cache_name = md5($apiUrl) . '.cache';
         $cache_filename = $this->cacheDir . DIRECTORY_SEPARATOR . $cache_name;
 
         return $cache_filename;
