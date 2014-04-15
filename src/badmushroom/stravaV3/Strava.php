@@ -1,6 +1,6 @@
 <?php
 
-namespace stravaV3;
+namespace badmushroom\stravaV3;
 
 require_once 'Base.php';
 
