@@ -1,0 +1,13 @@
+{
+    "name": "bad-mushroom/strava-v3",
+    "description": "A php wrapper for working with Strava's V3 API.",
+    "authors": [
+        {
+            "name": "Chris Sprague",
+            "email": "chris@chaoscontrol.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+    }
+}
