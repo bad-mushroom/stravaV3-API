@@ -1,7 +1,7 @@
 <?php
 
-namespace badmushroom\stravaV3;
-use badmushroom\stravaV3\Base;
+namespace badmushroom\strava;
+use badmushroom\strava\Base;
 
 /**
  * Strava API V3 php Wrapper

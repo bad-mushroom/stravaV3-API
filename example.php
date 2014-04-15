@@ -11,7 +11,7 @@ try {
       * The constructor expects an array of your app's Access Token, Sectret Token, Client ID, the Redirect URL, and cache directory.
       * See http://strava.github.io/api/ for more detail.
       */
-    $strava = new badmushroom\stravaV3\Strava(array(
+    $strava = new badmushroom\strava\Strava(array(
         'accessToken'  => '',
         'secretToken' => '',
         'clientID' => 000,

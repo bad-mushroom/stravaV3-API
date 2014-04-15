@@ -14,9 +14,7 @@
 	
 	"autoload": {
         "psr-0" : {
-            "badmushroom\\stravaV3" : "src"
+            "badmushroom\\strava" : "src"
         }
-    },
-	
-	"minimum-stability": "dev"
+    }
 }

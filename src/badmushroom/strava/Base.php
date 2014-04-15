@@ -1,6 +1,6 @@
 <?php
 
-namespace badmushroom\stravaV3;
+namespace badmushroom\strava;
 
 /**
  * Strava API V3 php Wrapper
