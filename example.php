@@ -1,6 +1,9 @@
 <?php
 
-require '/<path>/Strava.php';
+/**
+ * Note: If you're not using a PS-R compliant autoloader you'll need to manually include Base.php and Strava.php.
+ * You'll also need to remove the namespacing when instantiating.
+ */
 
 try {
 
@@ -8,7 +11,7 @@ try {
       * The constructor expects an array of your app's Access Token, Sectret Token, Client ID, the Redirect URL, and cache directory.
       * See http://strava.github.io/api/ for more detail.
       */
-    $strava = new \stravaV3\Strava(array(
+    $strava = new badmushroom\stravaV3\Strava(array(
         'accessToken'  => '',
         'secretToken' => '',
         'clientID' => 000,

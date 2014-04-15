@@ -1,8 +1,7 @@
 <?php
 
 namespace badmushroom\stravaV3;
-
-require_once 'Base.php';
+use badmushroom\stravaV3\Base;
 
 /**
  * Strava API V3 php Wrapper
@@ -23,7 +22,7 @@ require_once 'Base.php';
  * @license    http://www.gnu.org/licenses/gpl.html GNU Public License
  * @version    0.2.0
  */
-class Strava extends \stravaV3\Base
+class Strava extends Base
 {
     /**
       * Constructor
