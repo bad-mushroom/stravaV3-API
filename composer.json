@@ -1,5 +1,5 @@
 {
-    "name": "bad-mushroom/strava-v3",
+    "name": "bad-mushroom/stravaV3-API",
     "description": "A php wrapper for working with Strava's V3 API.",
 	"license": "GPL3",
     "authors": [
