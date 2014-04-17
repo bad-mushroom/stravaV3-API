@@ -48,7 +48,7 @@ class Strava extends Base
       */
     public function requestAccess($scope = null, $state = null, $prompt = null)
     {
-        $url = $this->oathUrl . 'authorize?client_id=' . $this->clientID . '&response_type=' . $this->responseType .
+        $url = $this->oauthUrl . 'authorize?client_id=' . $this->clientID . '&response_type=' . $this->responseType .
             '&redirect_uri=' . urlencode($this->redirectUri);
 
         if ($scope != null) {
